@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mbolatiana - Carte de visite numérique</title>
+    <link rel="stylesheet" href="sit.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .card {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: -75px;
+            position: relative;
+            z-index: 2;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            object-fit: cover;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        .name-title {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #3498db;
+        }
+
+        .name-title strong {
+            font-size: 28px;
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            padding: 20px 40px 40px 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+
+        .info-card p, .info-card ul {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .info-card ul {
+            list-style-type: none;
+        }
+
+        .info-card li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .info-card li:before {
+            content: "•";
+            color: #3498db;
+            font-size: 20px;
+            position: absolute;
+            left: 5px;
+            top: -2px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #e1f0fa;
+            color: #2c3e50;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 0.9em;
+            border: 1px solid #3498db;
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #2c3e50;
+        }
+
+        .contact-item strong {
+            color: #3498db;
+            min-width: 60px;
+        }
+
+        .formation-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .formation-item strong {
+            color: #3498db;
+            font-size: 1.1em;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+            margin: 30px 0;
+        }
+
+        .presentation {
+            background: #e8f4fd;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.1em;
+            border: 2px dashed #3498db;
+        }
+
+        .presentation strong {
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
+            
+            .name-title strong {
+                font-size: 22px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>Carte de visite numérique</h1>
+            <p>Étudiant en Développement d'Applications</p>
+        </div>
+
+        <div class="profile-container">
+            <img src="img.jpg" alt="Photo de profil de Mbolatiana">
+            <div class="name-title">
+                <strong>ZAZANOHARENA Mbolatiana</strong>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Présentation -->
+            <div class="presentation">
+                <p><strong>🎯 À propos de moi</strong><br>
+                Étudiant passionné en L1 Informatique, spécialisé dans le développement d'applications web et mobiles.</p>
+            </div>
+
+            <!-- Grille d'informations principales -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📚 Formation</h3>
+                    <p><strong>Établissement :</strong><br>EMIT - Ecole de Management et d'Innovation Technologique</p>
+                    <p><strong>Parcours :</strong><br>Développement d'Application d'Internet et Intranet</p>
+                    <p><strong>Niveau :</strong> L1</p>
+                    <p><strong>Matricule :</strong> 210l26</p>
+                </div>
+
+                <div class="info-card">
+                    <h3>🌍 Langues</h3>
+                    <div>
+                        <span class="badge">🇲🇬 Malagasy (Courant)</span>
+                        <span class="badge">🇫🇷 Français (Moyen)</span>
+                        <span class="badge">🇬🇧 Anglais (Moyen)</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>💻 Compétences</h3>
+                    <div>
+                        <span class="badge">HTML5</span>
+                        <span class="badge">CSS3</span>
+                        <span class="badge">Travail d'équipe</span>
+                        <span class="badge">Résolution de problèmes</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formation détaillée -->
+            <h2 style="color: #2c3e50; margin: 30px 0 20px 0;">🎓 Parcours académique</h2>
+            <div class="formation-item">
+                <strong>2026 - Présent</strong>
+                <p style="margin: 10px 0;">Licence 1 en Informatique<br>
+                <small style="color: #666;">Ecole de Management et d'Innovation Technologique</small></p>
+            </div>
+            <div class="formation-item">
+                <strong>2022</strong>
+                <p style="margin: 10px 0;">Baccalauréat scientifique (Série D)<br>
+                <small style="color: #666;">Mention : à préciser</small></p>
+            </div>
+
+            <hr>
+
+            <!-- Coordonnées -->
+            <h2 style="color: #2c3e50; margin-bottom: 20px;">📞 Contact</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <strong>📱 Tél :</strong>
+                    <span>038 73 009 34</span>
+                </div>
+                <div class="contact-item">
+                    <strong>📍 Adresse :</strong>
+                    <span>ANDRAINJATO</span>
+                </div>
+                <div class="contact-item">
+                    <strong>✉️ Email :</strong>
+                    <span>zazanoharenambolatiana@gmail.com</span>
+                </div>
+            </div>
+
+            <!-- Petite note supplémentaire -->
+            <div style="text-align: center; margin-top: 30px; color: #666; font-style: italic;">
+                <p>✨ Ouvert aux opportunités de stage et de collaboration ✨</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
